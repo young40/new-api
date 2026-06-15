@@ -34,6 +34,7 @@ import '@/lib/dayjs'
 import { applyFaviconToDom } from '@/lib/dom-utils'
 import { initializeFrontendCache } from '@/lib/frontend-cache'
 import { handleServerError } from '@/lib/handle-server-error'
+import { BASE_PATH } from '@/lib/base-path'
 import { DirectionProvider } from './context/direction-provider'
 import { FontProvider } from './context/font-provider'
 import { ThemeProvider } from './context/theme-provider'
@@ -102,6 +103,7 @@ const router = createRouter({
   context: { queryClient },
   defaultPreload: 'intent',
   defaultPreloadStaleTime: 0,
+  basepath: BASE_PATH || undefined,
 })
 
 // Register the router instance for type safety
