@@ -18,6 +18,7 @@ For commercial licensing, please contact support@quantumnous.com
 */
 
 import { API } from './api';
+import { BASE_PATH } from './base-path';
 
 /**
  * 按需获取单个令牌的真实 key
@@ -89,7 +90,7 @@ export function getServerAddress() {
   }
 
   if (!serverAddress) {
-    serverAddress = window.location.origin;
+    serverAddress = window.location.origin + BASE_PATH;
   }
 
   return serverAddress;
