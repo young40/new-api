@@ -17,6 +17,8 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 For commercial licensing, please contact support@quantumnous.com
 */
 
+import { withBasePath } from '../../../../../helpers/base-path';
+
 import React, { useState, useEffect, useMemo, useCallback, memo } from 'react';
 import {
   Card,
@@ -262,7 +264,7 @@ const PricingVendorIntro = memo(
     const createCoverStyle = useCallback(
       (primaryColor) => ({
         '--palette-primary-darkerChannel': primaryColor,
-        backgroundImage: `linear-gradient(0deg, rgba(var(--palette-primary-darkerChannel) / 80%), rgba(var(--palette-primary-darkerChannel) / 80%)), url('/cover-4.webp')`,
+        backgroundImage: `linear-gradient(0deg, rgba(var(--palette-primary-darkerChannel) / 80%), rgba(var(--palette-primary-darkerChannel) / 80%)), url('${withBasePath('/cover-4.webp')}')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
