@@ -38,5 +38,7 @@ jobs:
           tags: |
             ${{ secrets.ALIYUN_ACR_REGISTRY }}/${{ env.ALIYUN_NAMESPACE }}:latest
             ${{ secrets.ALIYUN_ACR_REGISTRY }}/${{ env.ALIYUN_NAMESPACE }}:${{ github.sha }}
+          build-args: |
+            VITE_BASE_PATH=/new-api
           cache-from: type=gha
           cache-to: type=gha,mode=max
