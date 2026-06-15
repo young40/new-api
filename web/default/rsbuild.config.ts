@@ -14,6 +14,7 @@ export default defineConfig(({ envMode }) => {
     'http://localhost:3000'
 
   const isProd = envMode === 'production'
+  const basePath = process.env.VITE_BASE_PATH || env.publicVars?.VITE_BASE_PATH || '/'
   const devProxy = Object.fromEntries(
     (['/api', '/mj', '/pg'] as const).map((key) => [
       key,
@@ -74,7 +75,10 @@ export default defineConfig(({ envMode }) => {
       target: 'web',
       distPath: {
         root: 'dist',
+        js: 'assets',
+        css: 'assets',
       },
+      assetPrefix: basePath,
       // Rely on Rsbuild default legalComments ("linked" → per-chunk *.LICENSE.txt) in all modes.
       // Do not set "none" in production: that strips minifier-preserved third-party notices and
       // extracted license files, which some distributions require for open-source compliance.

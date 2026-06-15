@@ -21,6 +21,7 @@ export default defineConfig(({ envMode }) => {
     clientServerUrl ||
     'http://localhost:3000'
   const isProd = envMode === 'production'
+  const basePath = process.env.VITE_BASE_PATH || env.publicVars?.VITE_BASE_PATH || '/'
   const devProxy = Object.fromEntries(
     (['/api', '/mj', '/pg'] as const).map((key) => [
       key,
@@ -38,6 +39,7 @@ export default defineConfig(({ envMode }) => {
         'import.meta.env.VITE_REACT_APP_SERVER_URL': JSON.stringify(
           clientServerUrl,
         ),
+        'import.meta.env.VITE_BASE_PATH': JSON.stringify(basePath),
       },
     },
     resolve: {
@@ -62,7 +64,10 @@ export default defineConfig(({ envMode }) => {
       target: 'web',
       distPath: {
         root: 'dist',
+        js: 'assets',
+        css: 'assets',
       },
+      assetPrefix: basePath,
     },
     performance: {
       removeConsole: isProd ? ['log'] : false,
