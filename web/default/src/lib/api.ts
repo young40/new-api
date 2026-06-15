@@ -20,6 +20,7 @@ import axios, { type AxiosRequestConfig } from 'axios'
 import { t } from 'i18next'
 import { toast } from 'sonner'
 import { useAuthStore } from '@/stores/auth-store'
+import { BASE_PATH } from '@/lib/base-path'
 
 declare module 'axios' {
   export interface AxiosRequestConfig {
@@ -35,8 +36,8 @@ export type ApiRequestConfig = AxiosRequestConfig
 // Axios Instance Configuration
 // ============================================================================
 
-// Base URL: empty string for same-origin API requests
-const baseURL = ''
+// Base URL: empty string for same-origin API requests, or BASE_PATH for sub-path deployment
+const baseURL = BASE_PATH || ''
 
 // Create axios instance with default config
 export const api = axios.create({
