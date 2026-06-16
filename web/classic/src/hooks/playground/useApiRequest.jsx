@@ -31,6 +31,7 @@ import {
   processThinkTags,
   processIncompleteThinkTags,
 } from '../../helpers';
+import { withBasePath } from '../../helpers/base-path';
 
 export const useApiRequest = (
   setMessage,
@@ -185,7 +186,7 @@ export const useApiRequest = (
       setActiveDebugTab(DEBUG_TABS.REQUEST);
 
       try {
-        const response = await fetch(API_ENDPOINTS.CHAT_COMPLETIONS, {
+        const response = await fetch(withBasePath(API_ENDPOINTS.CHAT_COMPLETIONS), {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -313,7 +314,7 @@ export const useApiRequest = (
       }));
       setActiveDebugTab(DEBUG_TABS.REQUEST);
 
-      const source = new SSE(API_ENDPOINTS.CHAT_COMPLETIONS, {
+      const source = new SSE(withBasePath(API_ENDPOINTS.CHAT_COMPLETIONS), {
         headers: {
           'Content-Type': 'application/json',
           'New-Api-User': getUserIdFromLocalStorage(),
